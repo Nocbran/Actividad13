@@ -33,4 +33,22 @@ class Mensajeria:
         return  self.quick_sort(menores) + iguales + self.quick_sort(mayores)
 
     def OrdenarPaquetes(self):
-        self.repartidores
+        self.repartidores = self.quick_sort(self.repartidores)
+
+    def BuscarRepartidor(self,nombre):
+        for i in self.repartidores:
+            if i.nombre() == nombre():
+                return  i
+        return None
+
+
+Empresa = Mensajeria()
+print("\n*******LOGISTICA EXPRESS*******")
+print("----Control de rendimiento----")
+cantidad = int(input("Cuantos repartidores desea ingresar: "))
+for i in range(cantidad):
+    print(f"\nIngrese datos del repartidor {i + 1}: ")
+    nombre = input("Nombre: ")
+    paquetes = int(input("Paquetes: "))
+    zona = input("Zona: ")
+    Empresa.AgregarRepartidor(Repartidor(nombre, paquetes, zona))
