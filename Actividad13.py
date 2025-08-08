@@ -8,7 +8,7 @@ class Repartidor:
         self.zona = zona
 
     def __str__(self):
-        return f"{self.nombre} - {self.paquetes} - zona: {self.zona}"
+        return f"{self.nombre} - {self.paquetes} paquetes - zona: {self.zona}"
 
 class Mensajeria:
     def __init__(self):
@@ -37,10 +37,12 @@ class Mensajeria:
 
     def BuscarRepartidor(self,nombre):
         for i in self.repartidores:
-            if i.nombre() == nombre():
-                return  i
+            if i.nombre.lower() == nombre.lower():
+                return i
         return None
-
+    def MostrarRanking(self):
+        for i in self.repartidores:
+            print(i)
 
 Empresa = Mensajeria()
 print("\n*******LOGISTICA EXPRESS*******")
@@ -52,3 +54,18 @@ for i in range(cantidad):
     paquetes = int(input("Paquetes: "))
     zona = input("Zona: ")
     Empresa.AgregarRepartidor(Repartidor(nombre, paquetes, zona))
+
+print("\n****Lista original****")
+Empresa.MostrarRanking()
+
+Empresa.OrdenarPaquetes()
+print("\n****Ranking****")
+Empresa.MostrarRanking()
+
+print("\n***BUSCAR REPARTIDOR***")
+Buscado = input("Ingrese el nombre del repartidor que desea buscar: ")
+resultado = Empresa.BuscarRepartidor(Buscado)
+if resultado:
+    print(resultado)
+else:
+    print("Repartidor no encontrado")
